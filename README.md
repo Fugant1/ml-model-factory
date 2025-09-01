@@ -4,13 +4,13 @@ An automated, end-to-end machine learning pipeline for training, evaluating, and
 
 ---
 
-## ## Project Overview
+## Project Overview
 
 This pipeline automates the entire machine learning workflow. It starts by ingesting raw data, proceeds to clean and preprocess it, trains a machine learning model, tunes its hyperparameters, and finally versions the resulting model and its performance metrics.
 
 ---
 
-## ## Features
+## Features
 
 * **Automated Data Preprocessing:** Handles missing values, scales numerical features, and encodes categorical features.
 * **Model Training:** Trains a classification/regression model on the prepared data.
@@ -19,7 +19,7 @@ This pipeline automates the entire machine learning workflow. It starts by inges
 
 ---
 
-## ## Tech Stack
+## Tech Stack
 
 * **Language:** Python 3.9
 * **Data Handling:** Pandas, NumPy
@@ -29,7 +29,7 @@ This pipeline automates the entire machine learning workflow. It starts by inges
 
 ---
 
-## ## How to Run
+## How to Run
 
 1.  Clone the repository:
     ```bash
