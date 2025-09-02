@@ -33,7 +33,7 @@ This pipeline automates the entire machine learning workflow. It starts by inges
 
 1.  Clone the repository:
     ```bash
-    git clone [https://github.com/Fugant1/ml-model-factory.git](https://github.com/Fugant1/ml-model-factory.git)
+    git clone https://github.com/Fugant1/ml-model-factory.git
     ```
 2.  Install the dependencies:
     ```bash
