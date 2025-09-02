@@ -6,12 +6,6 @@ from sklearn.compose import ColumnTransformer
 from src.preprocess import preprocess_data
 from src.train import train_model
 
-#select the model wanted based on the EDA
-MODEL_SELECTED = ''
-
-#select the target column based on the EDA
-TARGET_COLUMN = ''
-
 def run_pipeline():
     df, numerical_columns, categorical_columns = preprocess_data()
 
