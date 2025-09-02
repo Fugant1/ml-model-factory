@@ -39,7 +39,14 @@ This pipeline automates the entire machine learning workflow. It starts by inges
     ```bash
     pip install -r requirements.txt
     ```
-3.  Run the main pipeline script:
+3.  Move your dataset to the data folder:
+    ```bash
+    mv your_dataset_file data/
+    ```
+    
+4.  Configure the pipeline: Open src/config.py and set the FILENAME, TARGET_COLUMN, and MODEL_SELECTED variables to match your data and preferences.
+
+5.  Run the main pipeline script:
     ```bash
     python src/pipeline.py
     ```
