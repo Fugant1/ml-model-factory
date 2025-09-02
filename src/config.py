@@ -2,7 +2,10 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
 
 #Folder of data acquisition
-FOLDER = '/data'
+FOLDER = 'data'
+
+#Filename to be analyzed
+FILENAME = 'dataset.csv'
 
 #Possible Models to use in each case and their parameters
 MODELS = {
