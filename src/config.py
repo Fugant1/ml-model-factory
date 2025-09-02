@@ -7,6 +7,12 @@ FOLDER = 'data'
 #Filename to be analyzed
 FILENAME = 'dataset.csv'
 
+#Select the model wanted based on the EDA
+MODEL_SELECTED = ''
+
+#Select the target column based on the EDA
+TARGET_COLUMN = ''
+
 #Possible Models to use in each case and their parameters
 MODELS = {
     'random_forest': {
