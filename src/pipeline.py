@@ -3,6 +3,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.compose import ColumnTransformer
 
+from src.config import TARGET_COLUMN, MODEL_SELECTED
 from src.preprocess import preprocess_data
 from src.train import train_model
 
