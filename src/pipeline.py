@@ -1,11 +1,13 @@
 import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler, OneHotEncoder
+import mlflow
 from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
 
-from src.config import TARGET_COLUMN, MODEL_SELECTED
+from src.train import tune_and_train_model
 from src.preprocess import preprocess_data
-from src.train import train_model
+from src.config import TARGET_COLUMN, MODEL_SELECTED
 
 def run_pipeline():
     df, numerical_columns, categorical_columns = preprocess_data()
@@ -29,7 +31,32 @@ def run_pipeline():
         ]
     )
 
-    trained_model = train_model(X_train, X_test, y_train, y_test, preprocessor, MODEL_SELECTED)
+    #setting up the experiment using mlflow
+    mlflow.set_experiment("ML Pipeline Experiment")
+    with mlflow.start_run():
+        mlflow.log_param("model_name", MODEL_SELECTED)
+
+        #searching for models using gridsearch
+        search_results = tune_and_train_model(
+            X_train, y_train, preprocessor, MODEL_SELECTED
+        )
+
+        #selecting the best to log
+        best_model = search_results.best_estimator_
+        best_params = search_results.best_params_
+
+        mlflow.log_params(best_params)
+
+        #evaluating the model using the test samples
+        predictions = best_model.predict(X_test)
+        accuracy = accuracy_score(y_test, predictions)
+
+        mlflow.log_metric("accuracy", accuracy)
+
+        mlflow.sklearn.log_model(best_model, "model")
+
+        print(f"Run finished.\nAccuracy: {accuracy:.4f}")
+        print("Check the MLflow UI for more details.")
 
 if __name__ == "__main__":
     run_pipeline()
