@@ -5,10 +5,10 @@ from sklearn.linear_model import LogisticRegression
 FOLDER = 'data'
 
 #Filename to be analyzed
-FILENAME = 'dataset.csv'
+FILENAME = 'train.csv'
 
 #Select the model wanted based on the EDA
-MODEL_SELECTED = ''
+MODEL_SELECTED = 'random_forest'
 
 #Select the target column based on the EDA
 TARGET_COLUMN = ''

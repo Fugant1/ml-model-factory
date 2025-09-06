@@ -5,7 +5,8 @@ from src.config import FOLDER, FILENAME
 
 def _get_data() -> pd.DataFrame:
     '''This function literally does what is say, it gets the data from the pre configured folder'''
-    file_path = os.path.join(FOLDER, FILENAME)
+    project_root = os.path.abspath(os.path.join(os.getcwd(), '..'))
+    file_path = os.path.join(project_root, FOLDER, FILENAME)    
 
     if not os.path.exists(file_path):
         print(f"Error: File '{FILENAME}' not found in folder '{FOLDER}'.")
