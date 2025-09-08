@@ -21,11 +21,11 @@ This pipeline automates the entire machine learning workflow. It starts by inges
 
 ## Tech Stack
 
-* **Language:** Python 3.9
+* **Language:** Python
 * **Data Handling:** Pandas, NumPy
 * **ML Framework:** Scikit-learn
 * **Experiment Tracking:** MLflow
-* **Orchestration:** (e.g., Python scripts, GitHub Actions, etc.)
+* **Orchestration:** Python scripts
 
 ---
 
