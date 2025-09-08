@@ -48,5 +48,5 @@ This pipeline automates the entire machine learning workflow. It starts by inges
 
 5.  Run the main pipeline script:
     ```bash
-    python src/pipeline.py
+    python -m src.pipeline.py
     ```

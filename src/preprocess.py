@@ -25,7 +25,7 @@ def _get_data() -> pd.DataFrame:
     print("Data loaded successfully.")
     return df
 
-def _clean_data(df : pd.DataFrame) -> pd.DataFrame:
+def _clean_data(df : pd.DataFrame, target_column:str) -> pd.DataFrame:
     '''At this point this function just drops the NaN values if they arent too much in the dataset,
        later I would like to automate the process of removing outliers'''
     rows_with_na = df.isnull().any(axis=1).sum()
@@ -40,16 +40,18 @@ def _clean_data(df : pd.DataFrame) -> pd.DataFrame:
         print(f"{rows_with_na} rows with missing values found in your dataset\n We'll NOT remove them because it would prejudice our analysis")
     
     print("Data cleaned successfully")
+    df = df.dropna(subset=[target_column])
     return df
 
-def _organize_data(df : pd.DataFrame, nunique_threshold=6 ) -> pd.DataFrame:
+def _organize_data(df : pd.DataFrame, target_column, nunique_threshold=6) -> pd.DataFrame:
     '''This function just organize and divide data into categorical and numerical columns to help analyzing the data and training the model after this'''
-    numerical_cols = df.select_dtypes(include=np.number).columns.tolist()
-    categorical_cols = df.select_dtypes(include=['object', 'category', 'bool']).columns.tolist()
+    x=df.drop(columns=[target_column], axis=1)
+    numerical_cols = x.select_dtypes(include=np.number).columns.tolist()
+    categorical_cols = x.select_dtypes(include=['object', 'category', 'bool']).columns.tolist()
     newly_categorical = []
 
     for col in numerical_cols:
-        if df[col].nunique() <= nunique_threshold: #here we have a limit to classify false numerical data
+        if x[col].nunique() <= nunique_threshold: #here we have a limit to classify false numerical data
             newly_categorical.append(col)
             
     numerical_cols = [col for col in numerical_cols if col not in newly_categorical]
@@ -58,11 +60,11 @@ def _organize_data(df : pd.DataFrame, nunique_threshold=6 ) -> pd.DataFrame:
     print("Data organized successfully")
     return df, numerical_cols, categorical_cols
 
-def preprocess_data():
+def preprocess_data(target_column):
     '''Just run the other two functions so we can call just one single function in the pipe file'''
     df = _get_data()
-    df = _clean_data(df)
-    df, numerical_cols, categorical_cols = _organize_data(df)
+    df = _clean_data(df, target_column)
+    df, numerical_cols, categorical_cols = _organize_data(df, target_column)
 
     print("Preprocess of data done!")
     return df, numerical_cols, categorical_cols
